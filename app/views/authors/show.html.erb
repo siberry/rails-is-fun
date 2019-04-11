@@ -1,0 +1,16 @@
+<h1> <%= @author.name %> (b. <%= @author.birth_year %>) </h1>
+<span>Books:
+<% if @author.books.count == 0 %>
+  <em>(none)</em> </span>
+  <br>
+<% else %>
+  <ul>
+    <% @books.each do |book| %>
+      <li><%= link_to book.title, book %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= link_to "Edit #{@author.name}", edit_author_path %>
+<%= form_tag @author, method: "delete" do %>
+  <%= submit_tag "Delete #{@author.name}" %>
+<% end %>

@@ -1,0 +1,16 @@
+<h1> <%= @book.title %> (<%= @book.pages %> pages)</h1>
+<h2>Authors:</h2>
+<ul>
+  <% @book_authors.each do |book_author| %>
+    <li><%= link_to book_author.author.name_and_birthyear, book_author.author %> <br>
+      <%= form_tag book_author, method: "delete" do %>
+        <%= submit_tag "Remove author" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+ <%= form_for @book do |f| %>
+  Author <%= f.collection_select :author_ids, @authors_to_add, :id, :name %>
+  <%= f.submit "Add author" %>
+<% end %>
