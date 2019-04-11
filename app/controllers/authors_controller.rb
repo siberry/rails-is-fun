@@ -27,9 +27,12 @@ class AuthorsController < ApplicationController
 
   def update
     @author = Author.find(params[:id])
-    @author.update(params.require(:author).permit(:name, :birth_year))
-    @author.save
-    redirect_to @author
+    if @author.update(params.require(:author).permit(:name, :birth_year))
+      @author.save
+      redirect_to @author
+    else
+      render :edit
+    end
   end
 
   def destroy

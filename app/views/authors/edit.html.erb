@@ -1,4 +1,13 @@
 <h1>Edit <%= @author.name %> </h1>
+<% if @author.errors.any? %>
+  <ul class="error-list">
+    <% @author.errors.full_messages.each do |error| %>
+      <li>
+        <%= error %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for @author do |f| %>
   <p><%= f.label :name %>
   <%= f.text_field :name %> </p>
